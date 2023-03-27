@@ -1,6 +1,6 @@
-const { Schema, Types } = require('mongoose');
+const { Schema, Types } = require("mongoose");
 
-const thoughSchema = new Schema(
+const thoughsSchema = new Schema(
     {
         
         thoughtBody: {
@@ -25,4 +25,5 @@ const thoughSchema = new Schema(
     }
 );
 
+// Initialize the model
 module.exports = thoughtSchema;

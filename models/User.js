@@ -14,12 +14,12 @@ const userSchema = new Schema(
       required: true,
       unique: true,
     },
-    // thoughts column must be and array, there can be unlimited unique thoughts by a user
+    // thoughts column must be an array per read me
     thoughts: [{
       type: Schema.Types.ObjectId,
       ref: "Thought",
     },],
-
+  //  friends column must be an array per read me
     friends: [{
       type: Schema.Types.ObjectId,
       ref: "User",
@@ -33,7 +33,9 @@ const userSchema = new Schema(
   }
 );
 
-// Initialize our User model
-const User = model('user', userSchema);
+
+const User = model("user", userSchema);
+
+// Initialize the model
 
 module.exports = User;
