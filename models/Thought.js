@@ -1,4 +1,5 @@
-const { Schema, Types } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
+const { Thought } = require(".");
 
 const thoughsSchema = new Schema(
     {
@@ -26,4 +27,4 @@ const thoughsSchema = new Schema(
 );
 
 // Initialize the model
-module.exports = thoughtSchema;
+module.exports = Thought;
