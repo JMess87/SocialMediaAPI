@@ -1,9 +1,16 @@
-const { Thought, User } = require('../models');
+const { Thought, User, } = require('../models');
 
-const thoughtController = {
+module.exports = {
 
-  //  get for all thoughts with associated reactions
-  getAllThoughts(req, res) {
+  //  Get Function that returns all thoughts
+
+  getThoughts(req, res) {
+    Thought.find()
+      .then((thoughts) => res.json(thoughts))
+      .catch((err) => res.status(500).json(err));
+  },
+
+  getSingleThought(req, res) {
     Thought.find()
       .populate({
         path: "reactions",
@@ -14,7 +21,8 @@ const thoughtController = {
       .catch((err) => res.status(500).json(err));
   },
 
-  // / function to get one thought by id
+  // Get function that retrieves a single thought 
+
   getThoughtById(req, res) {
     Thought.findOne({ _id: req.params.id })
       .populate({
@@ -29,7 +37,8 @@ const thoughtController = {
       .catch((err) => res.status(500).json(err));
   },
 
-  // function to create a thought
+  // Function to create a thought
+
   createThought(req, res) {
     Thought.create(req.body)
       .then((dbThoughtData) => res.json(dbThoughtData))
@@ -44,7 +53,8 @@ const thoughtController = {
       .catch((err) => res.status(500).json(err));
   },
 
-  // function to update a thought data by id
+  // Function to update a thought 
+
   updateThought(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.id },
@@ -61,5 +71,25 @@ const thoughtController = {
       .catch((err) => res.status(500).json(err));
   },
 
+
+  deleteThought(req, res) {
+    Thought.findOneAndRemove({ _id: req.params.thoughtId })
+      .then((video) =>
+        !thought
+          ? res.status(404).json({ message: 'No thought with this id!' })
+          : User.findOneAndUpdate(
+            { thought: req.params.thoughId },
+            { $pull: { videos: req.params.thoughtId } },
+            { new: true }
+          )
+      )
+      .then((user) =>
+        !user
+          ? res
+            .status(404)
+            .json({ message: 'Thought created but no user with this id!' })
+          : res.json({ message: 'Thought successfully deleted!' })
+      )
+      .catch((err) => res.status(500).json(err));
+  }
 };
-module.exports = thoughtController;

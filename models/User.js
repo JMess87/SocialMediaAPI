@@ -1,4 +1,5 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model,} = require("mongoose");
+
 
 // User Schema based off of ReadMe for assignment
 const userSchema = new Schema(
@@ -33,6 +34,16 @@ const userSchema = new Schema(
   }
 );
 
+
+//  We are creating a virtual that gets the # of friends for users
+
+userSchema
+.virtual ('friendCount')
+
+//Getter
+.get(function(){
+  return this.friends.length;
+});
 
 const User = model("user", userSchema);
 

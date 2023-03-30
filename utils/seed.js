@@ -1,35 +1,43 @@
 const connection = require('../config/connection');
-const { User, Thought } = require('../models');
-const { getRandomName, getRandomVideos } = require('./data');
+const { User, Thoughts } = require('../models');
 
-connection.on('error', (err) => err);
-
+//  connection to db
 connection.once('open', async () => {
   console.log('connected');
-  await Video.deleteMany({});
-  await User.deleteMany({});
+  
+  const users = [
+    {
+      username: "Jennilee",
+      email: "Jennilee.Messenger@gmail.com"
+    },
+    {
+      username: "Jackson the Dog",
+      email: "Jackson@gmail.com"
+    },
+    {
+      username: "Betty White",
+      email: "BDubbs@gmail.com"
+    }
+  ];
 
-  const users = [];
-  const videos = getRandomVideos(10);
-
-  for (let i = 0; i < 20; i++) {
-    const fullName = getRandomName();
-    const first = fullName.split(' ')[0];
-    const last = fullName.split(' ')[1];
-
-    users.push({
-      first,
-      last,
-      age: Math.floor(Math.random() * (99 - 18 + 1) + 18),
-    });
-  }
+  const thoughts = [
+    {
+      thoughtText: "Coding is hard and challenging , but could be very rewarding in the future !!",
+    },
+    {
+      thoughtText: " Tacos are my favorite food, they are very versatile and can be eaten at any meal !!",
+    },
+    {
+      thoughtText: " If you ask me I was the best Golden Girl !!",
+    }
+  ];
 
   await User.collection.insertMany(users);
-  await Video.collection.insertMany(videos);
+  // await Thought.collection.insertMany(thoughts);
 
-  // loop through the saved videos, for each video we need to generate a video response and insert the video responses
   console.table(users);
-  console.table(videos);
+  console.table(thoughts);
+
   console.info('Seeding complete! 🌱');
   process.exit(0);
 });
