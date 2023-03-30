@@ -98,6 +98,11 @@ https://github.com/JMess87/SocialMediaAPI.git
 
 ### Video Link
 
+Start up of the application in the terminal , installation of packages and seeding of the database.
+https://drive.google.com/file/d/1IDmlS-z6UxVH7Bq1vB1PrbyEtPfVmFDa/view
+
+Insomia Routes
+https://drive.google.com/file/d/1D5OWzdkyYrR9rP_1pcpezYn05Et65UVq/view 
 
 
 ## Resources
