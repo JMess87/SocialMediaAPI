@@ -1,8 +1,8 @@
 # Social Media API Utilizing and NoSQL Database
 
 ## Description
+Build a social media API using a non sql database, to add users and their thoughts and then create reactions to those thoughts.
 
-## User Story
 
 ## Requirements
 
